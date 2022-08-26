@@ -10,16 +10,6 @@ import { User } from './src/User';
 const Stack = createNativeStackNavigator();
 export const DataStore = React.createContext()
 
-export const paths = {
-  home: 'Home',
-  repository: 'Repository',
-  user: 'User',
-  badData: 'BadData',
-  badConnection: 'BadConnection',
-  sender: 'Sender',
-  done: 'Done',
-}
-
 export default function App() {
   const [user, setUser] = React.useState('');
   const [repository, setRepository] = React.useState('');
@@ -65,7 +55,11 @@ export default function App() {
             headerShown: false
           }}>
 
-          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen
+            options={{ title: 'asd' }}
+            name="Home"
+            component={Home}
+          />
           <Stack.Screen name="User" component={User} />
 
         </Stack.Navigator>

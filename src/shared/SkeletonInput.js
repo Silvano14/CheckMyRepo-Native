@@ -1,24 +1,27 @@
-import { useContext } from "react"
-import { StyleSheet, View } from "react-native"
-import { DataStore, paths } from "../App"
+import { Image, Pressable, StyleSheet, Text, View } from "react-native"
+import { paths } from "../App"
+import { Button } from "./shared/Button"
 import { checkData } from "./shared/checkData"
 import { textFont } from "./shared/commonStyle"
-import { CustomButton } from "./shared/CustomButton"
-import { Header } from "./shared/Header"
 import { Input } from "./shared/Input"
 
-export const User = ({ navigation }) => {
-    const { user } = useContext(DataStore)
-
+const SkeletonInput = ({ titleHeader, onChangeValue = () => { }, buttonText = '' }) => {
     return (
         <View style={styles.container}>
-            <Header title={'USER'} />
+            <View style={styles.header}>
+                <Pressable onPress={() => navigation.navigate(paths.home, { name: paths.home })}>
+                    <Image source={require('./assets/images/backArrow.png')} />
+                </Pressable>
+                <Text style={styles.text}>
+                    {titleHeader}
+                </Text>
+            </View>
             <Input
                 onChangeText={user.setUser}
                 placeHolder={'Type your github username'}
                 value={user.value}
             />
-            <CustomButton
+            <Button
                 text="CHECK"
                 onPress={() => checkData(user.value)
                     ? navigation.navigate(paths.repository, { name: paths.repository })

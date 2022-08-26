@@ -7,21 +7,21 @@ import { CustomButton } from "./shared/CustomButton"
 import { Header } from "./shared/Header"
 import { Input } from "./shared/Input"
 
-export const User = ({ navigation }) => {
-    const { user } = useContext(DataStore)
+export const Repository = ({ navigation }) => {
+    const { Repository } = useContext(DataStore)
 
     return (
         <View style={styles.container}>
-            <Header title={'USER'} />
+            <Header title={'REPOSITORY'} />
             <Input
-                onChangeText={user.setUser}
-                placeHolder={'Type your github username'}
-                value={user.value}
+                onChangeText={Repository.setRepository}
+                placeHolder={'Type your repository name'}
+                value={Repository.value}
             />
             <CustomButton
                 text="CHECK"
                 onPress={() => checkData(user.value)
-                    ? navigation.navigate(paths.repository, { name: paths.repository })
+                    ? navigation.navigate(paths.sender, { name: paths.sender })
                     : navigation.navigate(paths.badData, { name: paths.badData })}
             />
         </View>
