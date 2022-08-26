@@ -1,20 +1,75 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import * as React from 'react';
+import { StatusBar, View } from 'react-native';
+import { Home } from './src/Home';
+import { User } from './src/User';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+const Stack = createNativeStackNavigator();
+export const DataStore = React.createContext()
+
+export const paths = {
+  home: 'Home',
+  repository: 'Repository',
+  user: 'User',
+  badData: 'BadData',
+  badConnection: 'BadConnection',
+  sender: 'Sender',
+  done: 'Done',
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  const [user, setUser] = React.useState('');
+  const [repository, setRepository] = React.useState('');
+
+  const [fontsLoaded] = useFonts({
+    'OpenSans': require('./src/assets/fonts/OpenSans.ttf'),
+  });
+
+  React.useEffect(() => {
+    async function prepare() {
+      await SplashScreen.preventAutoHideAsync();
+    }
+
+    prepare();
+  }, []);
+
+  const onLayoutRootView = React.useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  return (
+    <DataStore.Provider value={{
+      user: {
+        value: user,
+        setUser,
+      },
+      repository: {
+        value: repository,
+        setRepository,
+      },
+    }}>
+      <StatusBar barStyle={'default'} />
+      <View onLayout={onLayoutRootView} />
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false
+          }}>
+
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="User" component={User} />
+
+        </Stack.Navigator>
+      </NavigationContainer>
+    </DataStore.Provider>
+  );
+}
