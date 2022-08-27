@@ -1,28 +1,43 @@
 import { useContext } from "react"
 import { StyleSheet, View } from "react-native"
-import { DataStore, paths } from "../App"
-import { checkData } from "./shared/checkData"
-import { textFont } from "./shared/commonStyle"
-import { CustomButton } from "./shared/CustomButton"
-import { Header } from "./shared/Header"
-import { Input } from "./shared/Input"
+import { DataStore } from "./shared/utils/context"
+import { textFont } from "./shared/utils/commonStyle"
+import { CustomButton } from "./shared/components/CustomButton"
+import { Header } from "./shared/components/Header"
+import { Input } from "./shared/components/Input"
+import { paths } from "./shared/utils/router"
 
 export const Repository = ({ navigation }) => {
-    const { Repository } = useContext(DataStore)
+    const { repository, user } = useContext(DataStore)
+
+    const getPathByData = () => {
+        if (!user.value)
+            return paths.user
+
+        if (!repository.value)
+            return paths.badData
+
+        fetch(`https://github.com/${user.value}/${repository.value}`)
+            .then((e) => console.log('then', e))
+            .catch((e) => console.log('catch', e))
+        return paths.badData
+    }
 
     return (
         <View style={styles.container}>
-            <Header title={'REPOSITORY'} />
+            <Header
+                navigBackArrow={paths.user}
+                navigation={navigation}
+                title={'REPOSITORY'}
+            />
             <Input
-                onChangeText={Repository.setRepository}
+                onChangeText={repository.setRepository}
                 placeHolder={'Type your repository name'}
-                value={Repository.value}
+                value={repository.value}
             />
             <CustomButton
-                text="CHECK"
-                onPress={() => checkData(user.value)
-                    ? navigation.navigate(paths.sender, { name: paths.sender })
-                    : navigation.navigate(paths.badData, { name: paths.badData })}
+                text="DONE"
+                onPress={() => navigation.navigate(getPathByData(), { name: getPathByData() })}
             />
         </View>
     )

@@ -1,18 +1,18 @@
 import { useContext } from "react"
 import { StyleSheet, View } from "react-native"
-import { DataStore, paths } from "../App"
-import { checkData } from "./shared/checkData"
-import { textFont } from "./shared/commonStyle"
-import { CustomButton } from "./shared/CustomButton"
-import { Header } from "./shared/Header"
-import { Input } from "./shared/Input"
+import { textFont } from "./shared/utils/commonStyle"
+import { DataStore } from "./shared/utils/context"
+import { Header } from "./shared/components/Header"
+import { Input } from "./shared/components/Input"
+import { paths } from "./shared/utils/router"
+import { CustomButton } from "./shared/components/CustomButton"
 
 export const User = ({ navigation }) => {
     const { user } = useContext(DataStore)
 
     return (
         <View style={styles.container}>
-            <Header title={'USER'} />
+            <Header navigation={navigation} title={'USER'} />
             <Input
                 onChangeText={user.setUser}
                 placeHolder={'Type your github username'}
@@ -20,7 +20,7 @@ export const User = ({ navigation }) => {
             />
             <CustomButton
                 text="CHECK"
-                onPress={() => checkData(user.value)
+                onPress={() => user.value
                     ? navigation.navigate(paths.repository, { name: paths.repository })
                     : navigation.navigate(paths.badData, { name: paths.badData })}
             />

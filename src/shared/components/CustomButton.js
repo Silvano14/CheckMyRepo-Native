@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from "react-native"
-import { textFont } from "./commonStyle"
+import { textFont } from "../utils/commonStyle"
 
 // Be careful, this button works only in a background with a 100% height
 // check the container style

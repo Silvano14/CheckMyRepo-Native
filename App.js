@@ -4,11 +4,14 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
 import { StatusBar, View } from 'react-native';
+import { BadData } from './src/BadData';
 import { Home } from './src/Home';
+import { Repository } from './src/Repository';
+import { DataStore } from './src/shared/utils/context';
+import { paths } from './src/shared/utils/router';
 import { User } from './src/User';
 
 const Stack = createNativeStackNavigator();
-export const DataStore = React.createContext()
 
 export default function App() {
   const [user, setUser] = React.useState('');
@@ -55,12 +58,10 @@ export default function App() {
             headerShown: false
           }}>
 
-          <Stack.Screen
-            options={{ title: 'asd' }}
-            name="Home"
-            component={Home}
-          />
-          <Stack.Screen name="User" component={User} />
+          <Stack.Screen name={paths.home} component={Home} />
+          <Stack.Screen name={paths.user} component={User} />
+          <Stack.Screen name={paths.repository} component={Repository} />
+          <Stack.Screen name={paths.badData} component={BadData} />
 
         </Stack.Navigator>
       </NavigationContainer>

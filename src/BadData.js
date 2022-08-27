@@ -1,9 +1,8 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import { textFont } from "./shared/utils/commonStyle";
+import { Pressable, StyleSheet, Text, View } from "react-native"
 import { CustomButton } from "./shared/components/CustomButton"
-import { paths } from "./shared/utils/router";
+import { textFont } from "./shared/utils/commonStyle";
 
-export const Home = ({ navigation }) => {
+export const BadData = ({ navigate }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Set the repository address</Text>
@@ -44,15 +43,16 @@ const styles = StyleSheet.create({
         paddingLeft: leftSpace,
         paddingTop: 40,
         height: '100%',
+        backgroundColor: '#fca9b7',
     },
     title: {
-        ...textFont.font,
+        ...textFont,
         fontWeight: 'bold',
         paddingBottom: 30,
         fontSize: 20,
     },
     subTitle: {
-        ...textFont.font,
+        ...textFont,
         fontSize: fontSizeBody,
     },
     containerText: {
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end'
     },
     trasparent: {
-        ...textFont.font,
+        ...textFont,
         fontSize: fontSizeBody,
         color: 'gray',
     },
