@@ -1,4 +1,4 @@
-import { textFont } from '../utils/commonStyle'
+import { leftSpace, textFont } from '../utils/commonStyle'
 import { View, Pressable, Image, StyleSheet, Text } from 'react-native'
 import { paths } from '../utils/router'
 
@@ -15,7 +15,7 @@ export const Header = ({ title = '', navigBackArrow = paths.home, navigation = {
 const styles = StyleSheet.create({
     header: {
         paddingTop: 30,
-        paddingLeft: 30,
+        paddingLeft: leftSpace,
         paddingBottom: 40,
         flexDirection: 'row',
         alignItems: 'center',

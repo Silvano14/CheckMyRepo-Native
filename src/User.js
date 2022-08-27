@@ -22,7 +22,8 @@ export const User = ({ navigation }) => {
                 text="CHECK"
                 onPress={() => user.value
                     ? navigation.navigate(paths.repository, { name: paths.repository })
-                    : navigation.navigate(paths.badData, { name: paths.badData })}
+                    : navigation.navigate(paths.badData, { name: paths.badData })
+                }
             />
         </View>
     )

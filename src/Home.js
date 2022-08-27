@@ -1,6 +1,6 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import { textFont } from "./shared/utils/commonStyle";
-import { CustomButton } from "./shared/components/CustomButton"
+import { StyleSheet, Text, View } from "react-native";
+import { CustomButton } from "./shared/components/CustomButton";
+import { fontSizeBody, leftSpace, textFont } from "./shared/utils/commonStyle";
 import { paths } from "./shared/utils/router";
 
 export const Home = ({ navigation }) => {
@@ -12,21 +12,13 @@ export const Home = ({ navigation }) => {
                 <Text style={{
                     fontSize: fontSizeBody,
                 }}>/</Text>
-                <Pressable
-                    onPress={() => navigation.navigate(paths.user, { name: paths.user })}
-                >
-                    <Text style={styles.trasparent}>user</Text>
-                </Pressable>
+                <Text style={styles.trasparent}>user</Text>
             </View>
             <View style={styles.containerText}>
                 <Text style={{
                     fontSize: fontSizeBody,
                 }}>/</Text>
-                <Pressable
-                    onPress={() => navigation.navigate(paths.repository, { name: paths.repository })}
-                >
-                    <Text style={styles.trasparent}>repo</Text>
-                </Pressable>
+                <Text style={styles.trasparent}>repo</Text>
             </View>
             <CustomButton
                 text="CHECK"
@@ -36,9 +28,6 @@ export const Home = ({ navigation }) => {
     )
 }
 
-const leftSpace = 30;
-const fontSizeBody = 40;
-
 const styles = StyleSheet.create({
     container: {
         paddingLeft: leftSpace,
@@ -46,13 +35,13 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     title: {
-        ...textFont.font,
+        ...textFont,
         fontWeight: 'bold',
         paddingBottom: 30,
         fontSize: 20,
     },
     subTitle: {
-        ...textFont.font,
+        ...textFont,
         fontSize: fontSizeBody,
     },
     containerText: {
@@ -61,7 +50,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end'
     },
     trasparent: {
-        ...textFont.font,
+        ...textFont,
         fontSize: fontSizeBody,
         color: 'gray',
     },

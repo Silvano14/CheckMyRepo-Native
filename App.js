@@ -4,7 +4,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
 import { StatusBar, View } from 'react-native';
-import { BadData } from './src/BadData';
+import { BadData } from './src/errorView/BadData';
 import { Home } from './src/Home';
 import { Repository } from './src/Repository';
 import { DataStore } from './src/shared/utils/context';
