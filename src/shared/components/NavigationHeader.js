@@ -2,7 +2,7 @@ import { leftSpace, textFont } from '../utils/commonStyle'
 import { View, Pressable, Image, StyleSheet, Text } from 'react-native'
 import { paths } from '../utils/router'
 
-export const Header = ({ title = '', navigBackArrow = paths.home, navigation = {} }) =>
+export const NavigationHeader = ({ title = '', navigBackArrow = paths.home, navigation = {} }) =>
     <View style={styles.header}>
         <Pressable onPress={() => navigation.navigate(navigBackArrow, { name: navigBackArrow })}>
             <Image source={require('../../assets/images/backArrow.png')} />

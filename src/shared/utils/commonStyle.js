@@ -10,8 +10,14 @@ export const textFont = StyleSheet.create({
 export const errorView = StyleSheet.create({
     container: {
         paddingLeft: leftSpace,
+        paddingRight: 40,
         paddingTop: 40,
         height: '100%',
         backgroundColor: '#fca9b7',
     }
+})
+
+export const fontBold = StyleSheet.create({
+    ...textFont,
+    fontWeight: 'bold'
 })

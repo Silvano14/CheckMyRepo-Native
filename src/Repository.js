@@ -1,31 +1,56 @@
 import { useContext } from "react"
 import { StyleSheet, View } from "react-native"
-import { DataStore } from "./shared/utils/context"
-import { textFont } from "./shared/utils/commonStyle"
 import { CustomButton } from "./shared/components/CustomButton"
-import { Header } from "./shared/components/Header"
 import { Input } from "./shared/components/Input"
+import { NavigationHeader } from "./shared/components/NavigationHeader"
+import { DataStore } from "./shared/utils/context"
 import { paths } from "./shared/utils/router"
 
 export const Repository = ({ navigation }) => {
     const { repository, user } = useContext(DataStore)
 
-    const getPathByData = () => {
-        if (!user.value)
-            return paths.user
+    const navigateByData = () => {
+        if (!repository.value) {
+            navigation.navigate(paths.badData, { name: paths.badData, pathError: paths.repository })
+            return
+        }
 
-        if (!repository.value)
-            return paths.badData
-
-        fetch(`https://github.com/${user.value}/${repository.value}`)
-            .then((e) => console.log('then', e))
+        // I know, it's dangerous. But it's the best way to make a real control if the problem is user or repository
+        // Shoulb be better if we put a loader when user press check button
+        fetch(`https://github.com`)
+            .then((e) => {
+                if (e.status === 404) {
+                    navigation.navigate(paths.badConnection, { name: paths.badConnection })
+                    return
+                }
+                fetch(`https://github.com/${user.value}`)
+                    .then((e) => {
+                        if (e.status === 404)
+                            navigation.navigate(paths.badData, {
+                                name: paths.badData,
+                                pathError: paths.user,
+                            })
+                        else
+                            fetch(`https://github.com/${user.value}/${repository.value}`)
+                                .then((e) => {
+                                    if (e.status === 404)
+                                        navigation.navigate(paths.badData, {
+                                            name: paths.badData,
+                                            pathError: paths.repository,
+                                        })
+                                    else
+                                        navigation.navigate(paths.sender, { name: paths.sender })
+                                })
+                                .catch((e) => console.log('catch', e))
+                    })
+                    .catch((e) => console.log('catch', e))
+            })
             .catch((e) => console.log('catch', e))
-        return paths.badData
     }
 
     return (
         <View style={styles.container}>
-            <Header
+            <NavigationHeader
                 navigBackArrow={paths.user}
                 navigation={navigation}
                 title={'REPOSITORY'}
@@ -37,7 +62,7 @@ export const Repository = ({ navigation }) => {
             />
             <CustomButton
                 text="DONE"
-                onPress={() => navigation.navigate(getPathByData(), { name: getPathByData() })}
+                onPress={() => navigateByData()}
             />
         </View>
     )
@@ -46,18 +71,5 @@ export const Repository = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         height: '100%',
-    },
-    header: {
-        paddingTop: 30,
-        paddingLeft: 30,
-        paddingBottom: 40,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    text: {
-        ...textFont,
-        marginLeft: 30,
-        fontWeight: 'bold',
-        fontSize: 20
     }
 })

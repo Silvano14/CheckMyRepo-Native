@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import { CustomButton } from "./shared/components/CustomButton";
+import { TextHeader } from "./shared/components/TextHeader";
 import { fontSizeBody, leftSpace, textFont } from "./shared/utils/commonStyle";
 import { paths } from "./shared/utils/router";
 
 export const Home = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Set the repository address</Text>
-            <Text style={styles.subTitle}>github.com</Text>
+            <TextHeader />
             <View style={styles.containerText}>
                 <Text style={{
                     fontSize: fontSizeBody,
@@ -34,20 +34,10 @@ const styles = StyleSheet.create({
         paddingTop: 40,
         height: '100%',
     },
-    title: {
-        ...textFont,
-        fontWeight: 'bold',
-        paddingBottom: 30,
-        fontSize: 20,
-    },
-    subTitle: {
-        ...textFont,
-        fontSize: fontSizeBody,
-    },
     containerText: {
         fontSize: fontSizeBody,
         flexDirection: 'row',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
     },
     trasparent: {
         ...textFont,

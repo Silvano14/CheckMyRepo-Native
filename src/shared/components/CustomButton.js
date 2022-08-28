@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from "react-native"
-import { textFont } from "../utils/commonStyle"
+import { fontBold, textFont } from "../utils/commonStyle"
 
 // Be careful, this button works only in a background with a 100% height
 // check the container style
@@ -17,9 +17,8 @@ export const CustomButton = ({ text = '', onPress = () => { } }) => {
 }
 const styles = StyleSheet.create({
     textButton: {
-        ...textFont,
-        fontWeight: 'bold',
-        fontSize: 20,
+        ...fontBold,
+        fontSize: 22,
     },
     container: {
         position: 'absolute',
