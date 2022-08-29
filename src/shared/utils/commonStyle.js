@@ -3,8 +3,12 @@ import { StyleSheet } from "react-native";
 export const space = 30;
 export const fontSizeBody = 40;
 
-export const textFont = StyleSheet.create({
+export const font = StyleSheet.create({
     fontFamily: 'OpenSans',
+})
+
+export const fontBold = StyleSheet.create({
+    fontFamily: 'OpenSans-Bold'
 })
 
 export const errorView = StyleSheet.create({
@@ -22,9 +26,4 @@ export const container = StyleSheet.create({
     paddingRight: space,
     paddingTop: 60,
     height: '100%',
-})
-
-export const fontBold = StyleSheet.create({
-    ...textFont,
-    fontWeight: 'bold'
 })

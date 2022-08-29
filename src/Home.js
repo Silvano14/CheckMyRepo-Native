@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { CustomButton } from "./shared/components/CustomButton";
 import { TextHeader } from "./shared/components/TextHeader";
-import { container, fontSizeBody, textFont } from "./shared/utils/commonStyle";
+import { container, fontSizeBody, font } from "./shared/utils/commonStyle";
 import { paths } from "./shared/utils/router";
 
 export const Home = ({ navigation }) => {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
     },
     trasparent: {
-        ...textFont,
+        ...font,
         fontSize: fontSizeBody,
         color: 'gray',
     },

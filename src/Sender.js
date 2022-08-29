@@ -1,15 +1,26 @@
 import axios from "axios"
-import { useContext } from "react"
-import { StyleSheet, Text, View } from "react-native"
+import { useContext, useState } from "react"
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native"
 import { CustomButton } from "./shared/components/CustomButton"
 import { TextHeader } from "./shared/components/TextHeader"
-import { container, fontSizeBody, space, textFont } from "./shared/utils/commonStyle"
+import { container, fontSizeBody, space, font } from "./shared/utils/commonStyle"
 import { DataStore } from "./shared/utils/context"
 import { paths } from "./shared/utils/router"
 
 export const Sender = ({ navigation }) => {
     const { user, repository } = useContext(DataStore)
+    const [showLoader, setShowLoader] = useState(false)
 
+    if (showLoader)
+        return (
+            <View style={styles.loader}>
+                <ActivityIndicator
+                    size="large"
+                    color='black'
+                />
+                <Text>Sending data...</Text>
+            </View>
+        )
     return (
         <View style={styles.container}>
             <TextHeader />
@@ -24,6 +35,7 @@ export const Sender = ({ navigation }) => {
             <CustomButton
                 text="SEND"
                 onPress={async () => {
+                    setShowLoader(true)
                     const result = await sendData({
                         repoUrl: `https://github.com/${user.value}/${repository.value}`,
                         sender: user.value
@@ -33,6 +45,7 @@ export const Sender = ({ navigation }) => {
                         navigation.navigate(paths.done)
                     else
                         navigation.navigate(paths.badConnection)
+                    setShowLoader(false)
                 }}
             />
         </View>
@@ -44,13 +57,18 @@ const styles = StyleSheet.create({
         ...container,
         backgroundColor: '#84f9b9',
     },
+    loader: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     containerText: {
         fontSize: fontSizeBody,
         flexDirection: 'row',
         alignItems: 'flex-end',
     },
     trasparent: {
-        ...textFont,
+        ...font,
         fontSize: fontSizeBody,
         color: 'gray',
     },

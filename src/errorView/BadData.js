@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { CustomButton } from "../shared/components/CustomButton";
 import { TextHeader } from "../shared/components/TextHeader";
-import { errorView, fontBold, fontSizeBody, textFont } from "../shared/utils/commonStyle";
+import { errorView, fontBold, fontSizeBody, font } from "../shared/utils/commonStyle";
 import { paths } from "../shared/utils/router";
 
 export const BadData = ({ navigation, route }) => {
@@ -45,12 +45,12 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     trasparent: {
-        ...textFont,
+        ...font,
         fontSize: fontSizeBody,
         color: 'gray',
     },
     informationText: {
-        ...textFont,
+        ...font,
         fontSize: 25,
         paddingTop: 10,
     }

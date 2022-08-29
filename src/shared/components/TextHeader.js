@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native"
-import { fontBold, fontSizeBody, textFont } from "../utils/commonStyle"
+import { fontBold, fontSizeBody, font } from "../utils/commonStyle"
 
 export const TextHeader = () => {
     return (
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
     },
     subTitle: {
-        ...textFont,
+        ...font,
         fontSize: fontSizeBody,
     },
 })

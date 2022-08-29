@@ -6,6 +6,7 @@ import { NavigationHeader } from "./shared/components/NavigationHeader"
 import { container } from "./shared/utils/commonStyle"
 import { DataStore } from "./shared/utils/context"
 import { paths } from "./shared/utils/router"
+import axios from "axios"
 
 export const Repository = ({ navigation }) => {
     const { repository, user } = useContext(DataStore)
@@ -21,14 +22,24 @@ export const Repository = ({ navigation }) => {
         const origin = `https://github.com`
         let error = false
         // I don't like it so much, but for me is the best way to be sure which data is wrong
-        await fetch(origin)
-            .then((e) => {
-                if (e.status === 404 || e.status === 500) {
-                    navigation.navigate(paths.badConnection)
-                    error = true
-                }
+        await axios.get(origin)
+            .then(() => { })
+            .catch(() => { navigation.navigate(paths.badConnection); error = true })
+
+        // If you don't stop the flow the next error overwrite the current page  
+        if (error) {
+            setShowLoader(false)
+            return
+        }
+
+        await axios.get(`${origin}/${user.value}`)
+            .then(() => { })
+            .catch(() => {
+                navigation.navigate(paths.badData, {
+                    pathError: paths.user,
+                })
+                error = true
             })
-            .catch((e) => console.log('catch', e))
 
         // If you don't stop the flow the next error overwrite all  
         if (error) {
@@ -36,34 +47,9 @@ export const Repository = ({ navigation }) => {
             return
         }
 
-        await fetch(`${origin}/${user.value}`)
-            .then((e) => {
-                if (e.status === 404 || e.status === 500) {
-                    navigation.navigate(paths.badData, {
-                        pathError: paths.user,
-                    })
-                    error = true
-                }
-
-            })
-            .catch((e) => console.log('catch', e))
-
-        // If you don't stop the flow the next error overwrite all  
-        if (error) {
-            setShowLoader(false)
-            return
-        }
-
-        await fetch(`${origin}/${user.value}/${repository.value}`)
-            .then((e) => {
-                if (e.status === 404 || e.status === 500)
-                    navigation.navigate(paths.badData, {
-                        pathError: paths.repository,
-                    })
-                else
-                    navigation.navigate(paths.sender)
-            })
-            .catch((e) => console.log('catch', e))
+        await axios.get(`${origin}/${user.value}/${repository.value}`)
+            .then(() => navigation.navigate(paths.sender))
+            .catch(() => navigation.navigate(paths.badData, { pathError: paths.repository }))
             .finally(() => setShowLoader(false))
     }
 

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { CustomButton } from "../shared/components/CustomButton";
 import { TextHeader } from "../shared/components/TextHeader";
-import { fontBold, errorView, fontSizeBody, textFont } from "../shared/utils/commonStyle";
+import { errorView, fontBold, fontSizeBody, font } from "../shared/utils/commonStyle";
 import { DataStore } from "../shared/utils/context";
 import { paths } from "../shared/utils/router";
 
@@ -49,12 +49,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     trasparent: {
-        ...textFont,
+        ...font,
         fontSize: fontSizeBody,
         color: 'gray',
     },
     informationText: {
-        ...textFont,
+        ...font,
         fontSize: 25
+    },
+    test: {
+        ...fontBold,
+        fontSize: 25,
     }
 })

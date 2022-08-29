@@ -1,5 +1,5 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
-import { leftSpace, textFont } from '../utils/commonStyle'
+import { leftSpace, font } from '../utils/commonStyle'
 
 export const NavigationHeader = ({ title = '', navigation = {} }) =>
     <View style={styles.header}>
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     text: {
-        ...textFont,
+        ...font,
         marginLeft: 30,
         fontWeight: 'bold',
         fontSize: 20

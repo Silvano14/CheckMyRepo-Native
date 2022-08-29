@@ -23,6 +23,7 @@ export default function App() {
 
   const [fontsLoaded] = useFonts({
     'OpenSans': require('./src/assets/fonts/OpenSans.ttf'),
+    'OpenSans-Bold': require('./src/assets/fonts/OpenSans-Bold.ttf'),
   });
 
   React.useEffect(() => {
