@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export const leftSpace = 30;
+export const space = 30;
 export const fontSizeBody = 40;
 
 export const textFont = StyleSheet.create({
@@ -9,12 +9,19 @@ export const textFont = StyleSheet.create({
 
 export const errorView = StyleSheet.create({
     container: {
-        paddingLeft: leftSpace,
-        paddingRight: 40,
+        paddingLeft: space,
+        paddingRight: space,
         paddingTop: 40,
         height: '100%',
         backgroundColor: '#fca9b7',
     }
+})
+
+export const container = StyleSheet.create({
+    paddingLeft: space,
+    paddingRight: space,
+    paddingTop: 40,
+    height: '100%',
 })
 
 export const fontBold = StyleSheet.create({

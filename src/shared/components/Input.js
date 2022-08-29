@@ -17,8 +17,7 @@ export const Input = ({ placeHolder = '', onChangeText = () => { }, value = '' }
 
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: 40,
-        // marginTop: 40,
+        paddingHorizontal: 10,
     },
     input: {
         borderBottomWidth: 3,

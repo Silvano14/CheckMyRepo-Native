@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
 import { StatusBar, View } from 'react-native';
+import { Done } from './src/Done';
 import { BadConnection } from './src/errorView/BadConnection';
 import { BadData } from './src/errorView/BadData';
 import { Home } from './src/Home';
@@ -66,6 +67,7 @@ export default function App() {
           <Stack.Screen name={paths.badData} component={BadData} />
           <Stack.Screen name={paths.badConnection} component={BadConnection} />
           <Stack.Screen name={paths.sender} component={Sender} />
+          <Stack.Screen name={paths.done} component={Done} />
 
         </Stack.Navigator>
       </NavigationContainer>

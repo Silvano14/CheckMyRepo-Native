@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { StyleSheet, View } from "react-native"
-import { fontBold, textFont } from "./shared/utils/commonStyle"
+import { fontBold, space, textFont } from "./shared/utils/commonStyle"
 import { DataStore } from "./shared/utils/context"
 import { NavigationHeader } from "./shared/components/NavigationHeader"
 import { Input } from "./shared/components/Input"
@@ -32,17 +32,7 @@ export const User = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         height: '100%',
+        paddingLeft: space,
+        paddingRight: space,
     },
-    header: {
-        paddingTop: 30,
-        paddingLeft: 30,
-        paddingBottom: 40,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    text: {
-        marginLeft: 30,
-        ...fontBold,
-        fontSize: 20
-    }
 })

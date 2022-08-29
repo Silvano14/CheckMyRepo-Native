@@ -1,23 +1,19 @@
 import { StyleSheet, Text, View } from "react-native";
 import { CustomButton } from "./shared/components/CustomButton";
 import { TextHeader } from "./shared/components/TextHeader";
-import { fontSizeBody, leftSpace, textFont } from "./shared/utils/commonStyle";
+import { container, fontSizeBody, leftSpace, textFont } from "./shared/utils/commonStyle";
 import { paths } from "./shared/utils/router";
 
 export const Home = ({ navigation }) => {
     return (
-        <View style={styles.container}>
+        <View style={container}>
             <TextHeader />
             <View style={styles.containerText}>
-                <Text style={{
-                    fontSize: fontSizeBody,
-                }}>/</Text>
+                <Text style={styles.textStyle}>/</Text>
                 <Text style={styles.trasparent}>user</Text>
             </View>
             <View style={styles.containerText}>
-                <Text style={{
-                    fontSize: fontSizeBody,
-                }}>/</Text>
+                <Text style={styles.textStyle}>/</Text>
                 <Text style={styles.trasparent}>repo</Text>
             </View>
             <CustomButton
@@ -29,11 +25,6 @@ export const Home = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        paddingLeft: leftSpace,
-        paddingTop: 40,
-        height: '100%',
-    },
     containerText: {
         fontSize: fontSizeBody,
         flexDirection: 'row',
@@ -44,4 +35,7 @@ const styles = StyleSheet.create({
         fontSize: fontSizeBody,
         color: 'gray',
     },
+    textStyle: {
+        fontSize: fontSizeBody,
+    }
 })
