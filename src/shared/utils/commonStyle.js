@@ -11,7 +11,7 @@ export const errorView = StyleSheet.create({
     container: {
         paddingLeft: space,
         paddingRight: space,
-        paddingTop: 40,
+        paddingTop: 60,
         height: '100%',
         backgroundColor: '#fca9b7',
     }
@@ -20,7 +20,7 @@ export const errorView = StyleSheet.create({
 export const container = StyleSheet.create({
     paddingLeft: space,
     paddingRight: space,
-    paddingTop: 40,
+    paddingTop: 60,
     height: '100%',
 })
 

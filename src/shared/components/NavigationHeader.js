@@ -13,7 +13,6 @@ export const NavigationHeader = ({ title = '', navigation = {} }) =>
 
 const styles = StyleSheet.create({
     header: {
-        paddingTop: 30,
         paddingLeft: leftSpace,
         paddingBottom: 40,
         flexDirection: 'row',

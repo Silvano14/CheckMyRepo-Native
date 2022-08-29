@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { CustomButton } from "./shared/components/CustomButton";
 import { TextHeader } from "./shared/components/TextHeader";
-import { container, fontSizeBody, leftSpace, textFont } from "./shared/utils/commonStyle";
+import { container, fontSizeBody, textFont } from "./shared/utils/commonStyle";
 import { paths } from "./shared/utils/router";
 
 export const Home = ({ navigation }) => {
@@ -18,7 +18,7 @@ export const Home = ({ navigation }) => {
             </View>
             <CustomButton
                 text="CHECK"
-                onPress={() => navigation.navigate(paths.user, { name: paths.user })}
+                onPress={() => navigation.navigate(paths.user)}
             />
         </View>
     )

@@ -1,10 +1,15 @@
+import axios from "axios"
+import { useContext } from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { CustomButton } from "./shared/components/CustomButton"
 import { TextHeader } from "./shared/components/TextHeader"
 import { container, fontSizeBody, space, textFont } from "./shared/utils/commonStyle"
+import { DataStore } from "./shared/utils/context"
 import { paths } from "./shared/utils/router"
 
 export const Sender = ({ navigation }) => {
+    const { user, repository } = useContext(DataStore)
+
     return (
         <View style={styles.container}>
             <TextHeader />
@@ -18,7 +23,17 @@ export const Sender = ({ navigation }) => {
             </View>
             <CustomButton
                 text="SEND"
-                onPress={() => navigation.navigate(paths.done)}
+                onPress={async () => {
+                    const result = await sendData({
+                        repoUrl: `https://github.com/${user.value}/${repository.value}`,
+                        sender: user.value
+                    })
+
+                    if (result)
+                        navigation.navigate(paths.done)
+                    else
+                        navigation.navigate(paths.badConnection)
+                }}
             />
         </View>
     )
@@ -43,3 +58,23 @@ const styles = StyleSheet.create({
         fontSize: fontSizeBody,
     }
 })
+
+
+const config = {
+    url: 'https://pushmore.io/webhook/TkF1Y6Am5zz4vt3kVmwpxHjN',
+    method: "post",
+};
+
+const sendData = (
+    data = { repoUrl: 'https://github.com/Silvano14/CheckMyRepo', sender: 'Silvano14' },
+) =>
+    axios({ ...config, data: JSON.stringify(data) })
+        .then((e) => {
+            // You can get fake response, just to be sure I check the body
+            if (e.data !== 'OK' || e.status === 404)
+                return false
+            else
+                return true
+        })
+        .catch(() => false)
+

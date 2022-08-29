@@ -35,7 +35,7 @@ export const BadConnection = ({ navigation }) => {
             </Text>
             <CustomButton
                 text="CHECK"
-                onPress={() => navigation.navigate(targetButton, { name: targetButton })}
+                onPress={() => navigation.navigate(targetButton)}
             />
         </View>
     )

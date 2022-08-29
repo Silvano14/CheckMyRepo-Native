@@ -7,7 +7,16 @@ import { fontBold, textFont } from "../utils/commonStyle"
 export const CustomButton = ({ text = '', onPress = () => { } }) => {
     return (
         <View style={styles.container}>
-            <Pressable onPress={onPress}>
+            <Pressable
+                onPress={onPress}
+                style={({ pressed }) => [
+                    {
+                        backgroundColor: pressed
+                            ? 'white'
+                            : 'trasparent'
+                    },
+                    styles.wrapperCustom
+                ]}>
                 <Text style={styles.textButton}>
                     {text}
                 </Text>
@@ -24,5 +33,9 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 30,
         right: 30,
-    }
+    },
+    wrapperCustom: {
+        borderRadius: 8,
+        padding: 6
+    },
 })

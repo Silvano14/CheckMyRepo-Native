@@ -33,7 +33,7 @@ export const BadData = ({ navigation, route }) => {
             </Text>
             <CustomButton
                 text="CHECK"
-                onPress={() => navigation.navigate(pathError, { name: pathError })}
+                onPress={() => navigation.navigate(pathError)}
             />
         </View>
     )
@@ -42,7 +42,7 @@ export const BadData = ({ navigation, route }) => {
 const styles = StyleSheet.create({
     containerText: {
         flexDirection: 'row',
-        alignItems: 'flex-end',
+        alignItems: 'flex-start',
     },
     trasparent: {
         ...textFont,

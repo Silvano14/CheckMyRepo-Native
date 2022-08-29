@@ -14,7 +14,8 @@ import { DataStore } from './src/shared/utils/context';
 import { paths } from './src/shared/utils/router';
 import { User } from './src/User';
 
-const Stack = createNativeStackNavigator();
+// Started with _ for eslint rule
+const _Stack = createNativeStackNavigator();
 
 export default function App() {
   const [user, setUser] = React.useState('');
@@ -56,20 +57,20 @@ export default function App() {
       <StatusBar barStyle={'default'} />
       <View onLayout={onLayoutRootView} />
       <NavigationContainer>
-        <Stack.Navigator
+        <_Stack.Navigator
           screenOptions={{
             headerShown: false
           }}>
 
-          <Stack.Screen name={paths.home} component={Home} />
-          <Stack.Screen name={paths.user} component={User} />
-          <Stack.Screen name={paths.repository} component={Repository} />
-          <Stack.Screen name={paths.badData} component={BadData} />
-          <Stack.Screen name={paths.badConnection} component={BadConnection} />
-          <Stack.Screen name={paths.sender} component={Sender} />
-          <Stack.Screen name={paths.done} component={Done} />
+          <_Stack.Screen name={paths.home} component={Home} />
+          <_Stack.Screen name={paths.user} component={User} />
+          <_Stack.Screen name={paths.repository} component={Repository} />
+          <_Stack.Screen name={paths.badData} component={BadData} />
+          <_Stack.Screen name={paths.badConnection} component={BadConnection} />
+          <_Stack.Screen name={paths.sender} component={Sender} />
+          <_Stack.Screen name={paths.done} component={Done} />
 
-        </Stack.Navigator>
+        </_Stack.Navigator>
       </NavigationContainer>
     </DataStore.Provider>
   );
