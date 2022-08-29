@@ -27,3 +27,9 @@ export const container = StyleSheet.create({
     paddingTop: 60,
     height: '100%',
 })
+
+export const loader = StyleSheet.create({
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+})

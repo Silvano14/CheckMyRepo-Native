@@ -3,7 +3,7 @@ import { useContext, useState } from "react"
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native"
 import { CustomButton } from "./shared/components/CustomButton"
 import { TextHeader } from "./shared/components/TextHeader"
-import { container, fontSizeBody, space, font } from "./shared/utils/commonStyle"
+import { container, fontSizeBody, space, font, loader } from "./shared/utils/commonStyle"
 import { DataStore } from "./shared/utils/context"
 import { paths } from "./shared/utils/router"
 
@@ -13,7 +13,7 @@ export const Sender = ({ navigation }) => {
 
     if (showLoader)
         return (
-            <View style={styles.loader}>
+            <View style={loader}>
                 <ActivityIndicator
                     size="large"
                     color='black'
@@ -56,11 +56,6 @@ const styles = StyleSheet.create({
     container: {
         ...container,
         backgroundColor: '#84f9b9',
-    },
-    loader: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     containerText: {
         fontSize: fontSizeBody,

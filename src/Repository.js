@@ -3,7 +3,7 @@ import { ActivityIndicator, StyleSheet, Text, View } from "react-native"
 import { CustomButton } from "./shared/components/CustomButton"
 import { Input } from "./shared/components/Input"
 import { NavigationHeader } from "./shared/components/NavigationHeader"
-import { container } from "./shared/utils/commonStyle"
+import { container, loader } from "./shared/utils/commonStyle"
 import { DataStore } from "./shared/utils/context"
 import { paths } from "./shared/utils/router"
 import axios from "axios"
@@ -55,7 +55,7 @@ export const Repository = ({ navigation }) => {
 
     if (showLoader)
         return (
-            <View style={styles.loader}>
+            <View style={loader}>
                 <ActivityIndicator
                     size="large"
                     color='black'
@@ -82,11 +82,3 @@ export const Repository = ({ navigation }) => {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    loader: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    }
-})

@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { StyleSheet, View } from "react-native"
+import { View } from "react-native"
 import { CustomButton } from "./shared/components/CustomButton"
 import { Input } from "./shared/components/Input"
 import { NavigationHeader } from "./shared/components/NavigationHeader"
